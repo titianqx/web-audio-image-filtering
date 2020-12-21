@@ -51,6 +51,20 @@ const plotFiltered = (signal, plotContext) => {
   plotContext.putImageData(imgData, 0, 0)
 }
 
+const drawWaveLine = (signal, plotContext,type) => {
+  const { width, height } = plotContext.canvas
+  plotContext.beginPath();
+  plotContext.strokeStyle = type
+  for (let i = 0; i < signal.length; i += 1) {
+    const y = height - signal[i]
+    if (i === 0) {
+      plotContext.moveTo(i, y);
+    }
+    plotContext.lineTo(i, y);
+  }
+  plotContext.stroke();
+}
+
 const removeAlpha = (data) => {
   const arr = []
 
